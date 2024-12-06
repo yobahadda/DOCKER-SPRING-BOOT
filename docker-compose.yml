@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # Set your root password here
+      MYSQL_DATABASE: testspring         # Set the name of your database
+      MYSQL_USER: root                   # Set your MySQL username
+      MYSQL_PASSWORD: root       # Set your MySQL password
+    ports:
+      - "3306:3306"
+    networks:
+      - springboot-mysql-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: springboot-container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testspring
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - springboot-mysql-network
+
+networks:
+  springboot-mysql-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
