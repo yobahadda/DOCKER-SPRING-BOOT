@@ -16,10 +16,10 @@ public class ModuleController {
     private ModuleRepository repository;
 
     @GetMapping
-    public List<Module> getAll() {// still in the phase of testing ;
+    public List<Module> getAll() {
         return repository.findAll();
     }
-//working aswell
+
     @PostMapping
     public Module create(@RequestBody Module module) {
         return repository.save(module);
