@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.stereotype.Controller;
 import org.springframework.http.HttpStatus;
 import java.util.List;
+import java.util.Optional;
+
 import com.example.test.model.Professeur;
 
 @Repository
-public interface ProfesseurRepository extends JpaRepository<Professeur, Long> {}
+public interface ProfesseurRepository extends JpaRepository<Professeur, Long> {
+    Optional<Professeur> findByLogin(String login);
+}

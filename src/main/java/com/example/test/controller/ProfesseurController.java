@@ -1,4 +1,5 @@
 package com.example.test.controller;
+
 import com.example.test.repository.ProfesseurRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.http.HttpStatus;
 import java.util.List;
 import com.example.test.model.Professeur;
+
 @RestController
 @RequestMapping("/professeurs")
 public class ProfesseurController {
@@ -27,6 +29,11 @@ public class ProfesseurController {
     @GetMapping("/{id}")
     public ResponseEntity<Professeur> getById(@PathVariable Long id) {
         return repository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/by-login/{login}")
+    public ResponseEntity<Professeur> findByLogin(@PathVariable String login) {
+        return repository.findByLogin(login).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
