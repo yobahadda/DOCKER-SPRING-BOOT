@@ -17,6 +17,14 @@ public class ElementDeModule {
 
     @OneToMany(mappedBy = "elementDeModule", cascade = CascadeType.ALL)
     private List<ModaliteEvaluation> modalitesEvaluation;
+    @OneToMany(mappedBy = "elementDeModule", cascade = CascadeType.ALL)
+    private List<AffectationProfesseur> affectationsProfesseurs;
+    public List<AffectationProfesseur> getAffectationsProfesseurs() {
+        return affectationsProfesseurs;
+    }
+//    public Module getModule() {
+//        return module;
+//    }
 
     public Long getId() {
         return id;

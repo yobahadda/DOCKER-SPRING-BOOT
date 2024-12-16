@@ -1,4 +1,5 @@
 package com.example.test.controller;
+import com.example.test.repository.AffectationProfesseurRepository;
 import com.example.test.repository.ModuleRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,21 @@ import com.example.test.model.Module;
 public class ModuleController {
     @Autowired
     private ModuleRepository repository;
+    @Autowired
+    private AffectationProfesseurRepository affectationRepository;
+
+    @GetMapping("/professor/{professorId}")
+    public ResponseEntity<?> fetchModulesByProfessor(@PathVariable Long professorId) {
+        List<Long> elementIds = affectationRepository.findElementIdsByProfessorId(professorId);
+
+        if (elementIds.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No elements assigned to this professor.");
+        }
+
+        List<Module> modules = repository.findModulesByElementIds(elementIds);
+        return ResponseEntity.ok(modules);
+    }
 
     @GetMapping
     public List<Module> getAll() {
