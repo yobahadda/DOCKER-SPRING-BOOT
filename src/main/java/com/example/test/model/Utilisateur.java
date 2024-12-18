@@ -1,6 +1,6 @@
 package com.example.test.model;
 import jakarta.persistence.*;
-import java.util.List;
+
 @Entity
 public class Utilisateur {
     @Id

@@ -1,5 +1,7 @@
 package com.example.test.model;
+
 import jakarta.persistence.*;
+
 import java.util.List;
 @Entity
 public class Etudiant {
@@ -66,6 +68,4 @@ public class Etudiant {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-    // Getters and setters
 }

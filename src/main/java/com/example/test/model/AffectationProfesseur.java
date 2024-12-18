@@ -1,6 +1,6 @@
 package com.example.test.model;
 import jakarta.persistence.*;
-import java.util.List;
+
 @Entity
 public class AffectationProfesseur {
     @Id
@@ -15,6 +15,10 @@ public class AffectationProfesseur {
     @JoinColumn(name = "element_id")
     private ElementDeModule elementDeModule;
 
+    private boolean valide;
+
+
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -38,4 +42,14 @@ public class AffectationProfesseur {
     public void setElementDeModule(ElementDeModule elementDeModule) {
         this.elementDeModule = elementDeModule;
     }
+
+    public boolean isValide() {
+        return valide;
+    }
+
+    public void setValide(boolean valide) {
+        this.valide = valide;
+    }
+
+
 }

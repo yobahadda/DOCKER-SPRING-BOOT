@@ -1,5 +1,7 @@
 package com.example.test.model;
+
 import jakarta.persistence.*;
+
 import java.util.List;
 @Entity
 public class ElementDeModule {
@@ -13,7 +15,7 @@ public class ElementDeModule {
     @JoinColumn(name = "module_id")
     private Module module;
 
-    private int coefficient;
+    private double coefficient;
 
     @OneToMany(mappedBy = "elementDeModule", cascade = CascadeType.ALL)
     private List<ModaliteEvaluation> modalitesEvaluation;
@@ -42,7 +44,7 @@ public class ElementDeModule {
         this.module = module;
     }
 
-    public int getCoefficient() {
+    public double getCoefficient() {
         return coefficient;
     }
 

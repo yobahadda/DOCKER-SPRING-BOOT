@@ -1,6 +1,5 @@
 package com.example.test.model;
 import jakarta.persistence.*;
-import java.util.List;
 
 @Entity
 public class Professeur {
@@ -83,4 +82,5 @@ public class Professeur {
         this.login = login;
         this.motDePasse = motDePasse;
     }
+
 }
